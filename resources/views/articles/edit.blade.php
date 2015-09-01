@@ -1,14 +1,12 @@
 @extends('app')
 
 @section('content')
-    <h1>Write an article</h1>
+    <h1>Edit: {!! $article->title !!}</h1>
 
-    <br/>
-
-    {!! Form::open(['url'=>'articles']) !!}
+    {!! Form::model($article, ['method'=>'PATCH', 'url'=>'articles/' . $article->id]) !!}
     <div class="form-group">
-    {!! Form::label('title', 'Title: ') !!}
-    {!! Form::text('title', null, ['class' => 'form-control']) !!}
+        {!! Form::label('title', 'Title: ') !!}
+        {!! Form::text('title', null, ['class' => 'form-control']) !!}
     </div>
 
     <div class="form-group">
