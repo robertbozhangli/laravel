@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/test', function () {
+    return "TEST";
+});
+
+Route::get('/contact', 'ContactController@index');
