@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -24,7 +24,10 @@ Route::get('/contact', 'PagesController@contact');
 
 Route::resource('articles', 'ArticlesController');
 
-
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
+]);
 
 #Route::get('articles', 'ArticlesController@index');
 #Route::get('articles/create', 'ArticlesController@create');
