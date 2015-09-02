@@ -9,7 +9,8 @@ class Article extends Model
     protected $fillable = [
         'title',
         'body',
-        'published_at'
+        'published_at',
+        'user_id'
     ];
 
     public function scopePublished($query)
@@ -27,5 +28,9 @@ class Article extends Model
     public function setPublishedAtAttribute($date)
     {
         $this->attributes['published_at'] = \Carbon\Carbon::createFromFormat('Y-m-d', $date);
+    }
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 }

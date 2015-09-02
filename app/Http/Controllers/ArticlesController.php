@@ -3,10 +3,12 @@
 
 namespace App\Http\Controllers;
 use \App\Article;
-
+use App\Http\Requests\ArticleRequest;
+use illuminate\HttpRequest;
+use Request;
+//use illuminate\HttpResponse;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Symfony\Component\HttpFoundation\Request;
 
 class ArticlesController extends Controller
 {
@@ -27,9 +29,9 @@ class ArticlesController extends Controller
         return view('articles.create');
     }
 
-    public function store(Requests\CreateArticleRequest $request)
+    public function store()
     {
-        Article::create($request::all());
+        Article::create(Request::all());
         return redirect('articles');
     }
 
@@ -39,7 +41,7 @@ class ArticlesController extends Controller
         return view('articles.edit', compact('article'));
     }
 
-    public function update($id, Request $request)
+    public function update($id, Requests\ArticleRequest $request)
     {
         $article = Article::findOrFail($id);
 
