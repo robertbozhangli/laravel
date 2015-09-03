@@ -9,8 +9,7 @@ class Article extends Model
     protected $fillable = [
         'title',
         'body',
-        'published_at',
-        'user_id'
+        'published_at'
     ];
 
     public function scopePublished($query)

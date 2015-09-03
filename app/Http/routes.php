@@ -29,6 +29,11 @@ Route::controllers([
     'password' => 'Auth\PasswordController',
 ]);
 
+Route::get('/foo', ['middleware' => 'manager', 'uses' => function()
+{
+    return 'this page is only for managers';
+}]);
+
 #Route::get('articles', 'ArticlesController@index');
 #Route::get('articles/create', 'ArticlesController@create');
 #Route::get('articles/{id}', 'ArticlesController@show');
