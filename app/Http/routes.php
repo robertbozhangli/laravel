@@ -12,7 +12,7 @@ use App\Http\Controllers;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return 'Home Page';
 });
 
 Route::get('/test', function () {

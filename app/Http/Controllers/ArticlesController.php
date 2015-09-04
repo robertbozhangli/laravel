@@ -6,6 +6,7 @@ use \App\Article;
 use App\Http\Requests\ArticleRequest;
 use illuminate\HttpRequest;
 use Request;
+use Session;
 //use illuminate\HttpResponse;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -24,9 +25,8 @@ class ArticlesController extends Controller
         return view('articles.index', compact('articles'));
     }
 
-    public function show($id)
+    public function show(Article $article)
     {
-        $article = Article::findOrFail($id);
         return view('articles.show', compact('article'));
     }
 
@@ -38,21 +38,22 @@ class ArticlesController extends Controller
     public function store(Requests\ArticleRequest $request)
     {
         //Article::create(Request::all());
-        $article = new Article($request->all());
-        Auth::user()->articles()->save($article);
+        Auth::user()->articles()->save(new Article($request->all()));
+
+//        Session::flash('flash_message', 'Your article has been created!');
+//        Session::flash('flash_message_important', 'true');
+
+        flash('Your article has been created');
         return redirect('articles');
     }
 
-    public function edit($id)
+    public function edit(Article $article)
     {
-        $article = Article::findOrFail($id);
         return view('articles.edit', compact('article'));
     }
 
-    public function update($id, Requests\ArticleRequest $request)
+    public function update(Article $article, Requests\ArticleRequest $request)
     {
-        $article = Article::findOrFail($id);
-
         $article->update($request->all());
 
         return redirect('articles');
